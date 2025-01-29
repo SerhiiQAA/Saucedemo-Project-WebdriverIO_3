@@ -2,7 +2,7 @@
 
 ## Description
 
-This project uses WebdriverIO to automate testing of web applications. The tests include checking various features of the Saucedemo site, such as login, checkout, product sorting, and social media link verification.
+This project uses WebdriverIO + TypeScript to automate testing of web applications. The tests include checking various features of the Saucedemo site, such as login, checkout, product sorting, and social media link verification.
 
 ## Installation
 
