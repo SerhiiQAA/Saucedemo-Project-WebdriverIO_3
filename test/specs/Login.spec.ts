@@ -19,8 +19,7 @@ describe('SauceDemo tests', () => {
         await page.open();
     });
 
-    afterEach(async () => {
-        await browser.deleteSession();beforeEach(async () => {
+    beforeEach(async () => {
         browser = await remote({
             logLevel: 'info',
             path: '/',
@@ -36,7 +35,6 @@ describe('SauceDemo tests', () => {
 
     afterEach(async () => {
         await browser.deleteSession();
-    });
     });
 
     it('Valid data', async () => {
