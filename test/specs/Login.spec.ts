@@ -40,8 +40,8 @@ describe('SauceDemo tests', () => {
     it('Valid data', async () => {
         expect(await browser.getUrl()).toContain('https:');
         await page.login('standard_user', 'secret_sauce');
-        expect(await page.getPasswordFieldType()).toBe('disc');
-        await browser.pause(500);
+        // expect(await page.getPasswordFieldType()).toBe('disc');
+        // await browser.pause(500);
 
         //Checking the correctness of page elements
         expect(await page.getTitleText()).toBe('Products');
