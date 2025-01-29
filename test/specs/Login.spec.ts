@@ -37,18 +37,18 @@ describe('SauceDemo tests', () => {
         await browser.deleteSession();
     });
 
-    // it('Valid data', async () => {
-    //     expect(await browser.getUrl()).toContain('https:');
-    //     await page.login('standard_user', 'secret_sauce');
-    //     expect(await page.getPasswordFieldType()).toBe('disc');
-    //     await browser.pause(500);
+    it('Valid data', async () => {
+        expect(await browser.getUrl()).toContain('https:');
+        await page.login('standard_user', 'secret_sauce');
+        expect(await page.getPasswordFieldType()).toBe('disc');
+        await browser.pause(500);
 
-    //     //Checking the correctness of page elements
-    //     expect(await page.getTitleText()).toBe('Products');
-    //     expect(await browser.getUrl()).toContain('/inventory.html');
-    //     expect(await page.isInventoryListDisplayed()).toBe(true);
-    //     expect(await page.getInventoryItemsCount()).toBe(6);
-    // });
+        //Checking the correctness of page elements
+        expect(await page.getTitleText()).toBe('Products');
+        expect(await browser.getUrl()).toContain('/inventory.html');
+        expect(await page.isInventoryListDisplayed()).toBe(true);
+        expect(await page.getInventoryItemsCount()).toBe(6);
+    });
 
     it('Password invalid', async () => {
         expect(await browser.getUrl()).toContain('https:');
@@ -72,18 +72,6 @@ describe('SauceDemo tests', () => {
         expect(await page.isErrorIconDisplayed()).toBe(true);
         expect(await page.isErrorButtonDisplayed()).toBe(true);
         expect(await page.getErrorMessage()).toBe('Epic sadface: Username is required');
-    });
-    it('Valid data', async () => {
-        expect(await browser.getUrl()).toContain('https:');
-        await page.login('standard_user', 'secret_sauce');
-        expect(await page.getPasswordFieldType()).toBe('disc');
-        await browser.pause(500);
-
-        //Checking the correctness of page elements
-        expect(await page.getTitleText()).toBe('Products');
-        expect(await browser.getUrl()).toContain('/inventory.html');
-        expect(await page.isInventoryListDisplayed()).toBe(true);
-        expect(await page.getInventoryItemsCount()).toBe(6);
     });
 });
 
