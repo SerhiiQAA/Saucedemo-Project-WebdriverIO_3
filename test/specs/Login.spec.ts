@@ -39,11 +39,13 @@ describe('SauceDemo tests', () => {
 
     it('Valid data', async () => {
         expect(await browser.getUrl()).toContain('https:');
-        await page.login('standard_user', 'secret_sauce');
-        // expect(await page.getPasswordFieldType()).toBe('disc');
-        // await browser.pause(500);
+        
+        //Checking the -webkit-text-security CSS property for the password field
+        expect(await page.getPasswordFieldType()).toBe('disc');
 
-        //Checking the correctness of page elements
+        await page.login('standard_user', 'secret_sauce');
+
+        //Checking the correctness of URL, page elements
         expect(await page.getTitleText()).toBe('Products');
         expect(await browser.getUrl()).toContain('/inventory.html');
         expect(await page.isInventoryListDisplayed()).toBe(true);
