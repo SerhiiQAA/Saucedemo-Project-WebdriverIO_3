@@ -33,12 +33,6 @@ describe('SauceDemo tests', () => {
         await menuPage.openMenu();
         const menuItemsCount = await menuPage.getMenuItemsCount();
         expect(menuItemsCount).toBe(4);
-
-        // const expectedNames = ['All Items', 'About', 'Logout', 'Reset App State'];
-        // for (let i = 0; i < menuItems.length; i++) {
-        //     const itemText = await menuItems[i].getText();
-        //     expect(itemText).toBe(expectedNames[i]);
-        // }
     });
 
     it('Logout', async () => {
@@ -50,10 +44,13 @@ describe('SauceDemo tests', () => {
         const newUrl = await menuPage.getCurrentUrl();
         expect(newUrl).not.toBe(initialUrl);
 
+        //Checking that the input fields are empty
         expect(await menuPage.getUsernameValue()).toBe('');
         expect(await menuPage.getPasswordValue()).toBe('');
     });
 
+    // The tests below do not pass yet, as the corresponding features have not been implemented. 
+    // This is for the future. Please comment and run the following tests as needed
     // Uncomment and implement the following tests if needed
 
     // it('About', async () => {

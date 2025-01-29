@@ -36,7 +36,7 @@ describe('Social Media Links', () => {
 
         await socialMediaPage.switchToWindow(handles[1]);
         const currentUrl = await socialMediaPage.getCurrentUrl();
-        expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);
+        expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);  //We check whether the URL matches the old twitter.com domain or the new x.com domain
     });
 
     it('should open Facebook page', async () => {

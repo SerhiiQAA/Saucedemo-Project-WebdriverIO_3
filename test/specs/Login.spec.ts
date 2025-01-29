@@ -1,5 +1,5 @@
 import { remote, Browser } from 'webdriverio';
-import { LoginPage } from '../pages/LoginPage';  // Шлях до файлу з класом
+import { LoginPage } from '../pages/LoginPage';  
 
 describe('SauceDemo tests', () => {
     let browser: Browser;
@@ -23,7 +23,7 @@ describe('SauceDemo tests', () => {
         await browser.deleteSession();
     });
 
-    it('Valid', async () => {
+    it('Valid data', async () => {
         expect(await browser.getUrl()).toContain('https:');
         await page.login('standard_user', 'secret_sauce');
         expect(await page.getPasswordFieldType()).toBe('disc');

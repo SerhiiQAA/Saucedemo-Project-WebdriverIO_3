@@ -29,12 +29,12 @@ describe('Filter and sort products', () => {
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
 
-        // Збір назв товарів
+        // Collecting product names
         itemNamesArray = await productsPage.collectProductNames();
         sortedNamesAsc = [...itemNamesArray].sort();
         sortedNamesDesc = [...itemNamesArray].sort().reverse();
 
-        // Збір цін товарів
+        // Collecting prices of goods
         itemPricesArray = await productsPage.collectProductPrices();
         sortedPricesAsc = [...itemPricesArray].sort((a, b) => a - b);
         sortedPricesDesc = [...itemPricesArray].sort((a, b) => b - a);
