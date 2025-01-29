@@ -1,6 +1,7 @@
 import { remote, Browser } from 'webdriverio';
 import { LoginPage } from '../pages/LoginPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
+import { TestSetup } from '../pages/TestSetup'
 
 describe('SauceDemo tests', () => {
     let browser: Browser;
