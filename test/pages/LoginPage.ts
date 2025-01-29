@@ -12,16 +12,16 @@ export class LoginPage {
     }
 
     async login(username: string, password: string): Promise<void> {
-        await (await this.browser.$('[data-test="username"]')).setValue(username);
-        const passwordField = await this.browser.$('[data-test="password"]');
-        await passwordField.setValue(password);
-        await (await this.browser.$('[data-test="login-button"]')).click();
+        await this.browser.$('[data-test="username"]').setValue(username);
+        await this.browser.$('[data-test="password"]').setValue(password);
+        await this.browser.$('[data-test="login-button"]').click();
     }
+    
 
     async getPasswordFieldType(): Promise<string> {
         const passwordField = await this.browser.$('[data-test="password"]');
         await passwordField.waitForExist({ timeout: 5000 }); 
-        
+
         //Checking that we see dots when entering a password
         const cssProperty = await passwordField.getCSSProperty('-webkit-text-security');
         return cssProperty?.value ?? '';
