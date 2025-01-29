@@ -29,6 +29,7 @@ describe('SauceDemo tests', () => {
         await browser.deleteSession();
     });
 
+    //We randomly select a product from the ones available on the page each time we run the test
     it('Saving the cart after logout', async () => {
         await cartPage.addRandomProductToCart();
         expect(await cartPage.getCartBadgeText()).toContain('1');
@@ -39,6 +40,7 @@ describe('SauceDemo tests', () => {
         expect(await cartPage.getUsernameValue()).toBe('');
         expect(await cartPage.getPasswordValue()).toBe('');
         
+        //Check that the added product has a Remove button
         await loginPage.login('standard_user', 'secret_sauce');
         expect(await cartPage.getCartBadgeText()).toContain('1');
         expect(await cartPage.getInventoryText()).toContain('Remove');

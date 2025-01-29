@@ -7,6 +7,7 @@ export class CartPage {
         this.browser = browser;
     }
 
+    //We randomly select a product from the ones available on the page each time we run the test
     async addRandomProductToCart(): Promise<void> {
         const buttons = await this.browser.$$('.pricebar button');
         const randomIndex = Math.floor(Math.random() * await buttons.length);
