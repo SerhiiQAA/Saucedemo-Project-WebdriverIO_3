@@ -20,7 +20,23 @@ describe('SauceDemo tests', () => {
     });
 
     afterEach(async () => {
+        await browser.deleteSession();beforeEach(async () => {
+        browser = await remote({
+            logLevel: 'info',
+            path: '/',
+            capabilities: {
+                browserName: 'chrome'
+            }
+        });
+
+        await browser.setWindowSize(1280, 720);
+        page = new LoginPage(browser);
+        await page.open();
+    });
+
+    afterEach(async () => {
         await browser.deleteSession();
+    });
     });
 
     it('Valid data', async () => {
@@ -28,6 +44,8 @@ describe('SauceDemo tests', () => {
         await page.login('standard_user', 'secret_sauce');
         expect(await page.getPasswordFieldType()).toBe('disc');
         await browser.pause(500);
+
+        //Checking the correctness of page elements
         expect(await page.getTitleText()).toBe('Products');
         expect(await browser.getUrl()).toContain('/inventory.html');
         expect(await page.isInventoryListDisplayed()).toBe(true);
