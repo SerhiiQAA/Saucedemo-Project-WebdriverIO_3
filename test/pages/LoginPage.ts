@@ -1,6 +1,6 @@
 import { Browser } from 'webdriverio';
 
-export class LoginPage { // Додаємо експорт класу
+export class LoginPage { 
     private browser: Browser;
 
     constructor(browser: Browser) {
@@ -20,8 +20,9 @@ export class LoginPage { // Додаємо експорт класу
 
     async getPasswordFieldType(): Promise<string> {
         const passwordField = await this.browser.$('[data-test="password"]');
+        await passwordField.waitForExist({ timeout: 5000 }); 
         const cssProperty = await passwordField.getCSSProperty('-webkit-text-security');
-        return cssProperty?.value ?? ''; // Повернення значення або порожнього рядка
+        return cssProperty?.value ?? '';
     }
 
     async getTitleText(): Promise<string> {
