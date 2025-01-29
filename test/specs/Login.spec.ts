@@ -19,27 +19,13 @@ describe('SauceDemo tests', () => {
         await page.open();
     });
 
-    beforeEach(async () => {
-        browser = await remote({
-            logLevel: 'info',
-            path: '/',
-            capabilities: {
-                browserName: 'chrome'
-            }
-        });
-
-        await browser.setWindowSize(1280, 720);
-        page = new LoginPage(browser);
-        await page.open();
-    });
-
     afterEach(async () => {
         await browser.deleteSession();
     });
 
     it('Valid data', async () => {
         expect(await browser.getUrl()).toContain('https:');
-        
+
         //Checking the -webkit-text-security CSS property for the password field
         expect(await page.getPasswordFieldType()).toBe('disc');
 
