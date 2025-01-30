@@ -3,9 +3,9 @@
 ## Description
 
 This project uses WebdriverIO + TypeScript to automate testing of web applications. The tests include checking various features of the Saucedemo site, such as login, checkout, product sorting, and social media link verification. For better testing, the ability to run tests in different screen sizes has been added: 
-web: { width: 1280, height: 800 },
-tablet: { width: 768, height: 1024 },
-mobile: { width: 375, height: 812 };
+* web: { width: 1280, height: 800 },
+* tablet: { width: 768, height: 1024 },
+* mobile: { width: 375, height: 812 };
 
 ## Installation
 
