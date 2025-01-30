@@ -29,7 +29,7 @@ describe('SauceDemo tests', () => {
         await browser.deleteSession();
     });
 
-    it('Menu components', async () => {
+    it('Menu components (Test Case ID 4)', async () => {
         await menuPage.openMenu();
         const menuItemsCount = await menuPage.getMenuItemsCount();
         expect(menuItemsCount).toBe(4);
