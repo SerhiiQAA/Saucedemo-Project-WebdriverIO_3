@@ -29,7 +29,7 @@ describe('Social Media Links', () => {
     });
 
     // Footer Links (Test Case ID 7)
-    it('should open Twitter page (Test Case ID 7)', async () => {
+    it('should open Twitter page (Test Case ID 7 / 1)', async () => {
         await socialMediaPage.clickTwitter();
 
         const handles = await socialMediaPage.getWindowHandles();
@@ -42,7 +42,7 @@ describe('Social Media Links', () => {
         expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);  
     });
 
-    it('should open Facebook page (Test Case ID 7)', async () => {
+    it('should open Facebook page (Test Case ID 7 / 2)', async () => {
         await socialMediaPage.clickFacebook();
 
         const handles = await socialMediaPage.getWindowHandles();
@@ -52,7 +52,7 @@ describe('Social Media Links', () => {
         expect(await socialMediaPage.getCurrentUrl()).toBe('https://www.facebook.com/saucelabs');
     });
 
-    it('should open LinkedIn page (Test Case ID 7)', async () => {
+    it('should open LinkedIn page (Test Case ID 7 / 3)', async () => {
         await socialMediaPage.clickLinkedIn();
 
         const handles = await socialMediaPage.getWindowHandles();
