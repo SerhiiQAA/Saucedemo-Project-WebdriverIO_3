@@ -1,6 +1,8 @@
 import { remote, Browser } from 'webdriverio';
 import { LoginPage } from '../pages/LoginPage';
 import { ProductFilterPage } from '../pages/ProductFilterPage';
+import { setWindowSize } from '../../utils/windowUtils';
+
 
 describe('Filter and sort products', () => {
     let browser: Browser;
@@ -22,7 +24,11 @@ describe('Filter and sort products', () => {
             }
         });
 
-        await browser.setWindowSize(1280, 720);
+        // web: { width: 1280, height: 720 },
+        // mobile: { width: 375, height: 667 },
+        // laptop: { width: 1440, height: 900 };
+        await setWindowSize(browser);
+
         loginPage = new LoginPage(browser);
         productsPage = new ProductFilterPage(browser);
 

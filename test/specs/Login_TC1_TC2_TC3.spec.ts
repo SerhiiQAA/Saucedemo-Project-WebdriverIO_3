@@ -1,5 +1,6 @@
 import { remote, Browser } from 'webdriverio';
 import { LoginPage } from '../pages/LoginPage';  
+import { setWindowSize } from '../../utils/windowUtils';
 
 describe('SauceDemo tests', () => {
     let browser: Browser;
@@ -14,7 +15,12 @@ describe('SauceDemo tests', () => {
             }
         });
 
-        await browser.setWindowSize(1280, 720);
+        // web: { width: 1280, height: 720 },
+        // mobile: { width: 375, height: 667 },
+        // laptop: { width: 1440, height: 900 };
+        await setWindowSize(browser);
+
+
         page = new LoginPage(browser);
         await page.open();
     });
