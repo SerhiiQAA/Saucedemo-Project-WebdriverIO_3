@@ -17,9 +17,10 @@ describe('SauceDemo tests', () => {
             }
         });
 
-        // web: { width: 1280, height: 720 },
-        // mobile: { width: 375, height: 667 },
-        // laptop: { width: 1440, height: 900 };
+        // Possible options:
+        // web: { width: 1280, height: 800 },
+        // tablet: { width: 768, height: 1024 },
+        // mobile: { width: 375, height: 812 };
         await setWindowSize(browser);
 
 
