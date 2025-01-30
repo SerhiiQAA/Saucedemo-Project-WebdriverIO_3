@@ -47,25 +47,25 @@ describe('Filter and sort products', () => {
     });
 
     // Sorting products (Test Case ID 6))
-    it('should sort products by price ascending (Test Case ID 6)', async () => {
+    it('should sort products by price ascending (Test Case ID 6 / 1)', async () => {
         await productsPage.sortProductsBy('lohi');
         const currentPrices = await productsPage.getCurrentProductPrices();
         expect(currentPrices).toEqual(sortedPricesAsc);
     });
 
-    it('should sort products by price descending (Test Case ID 6)', async () => {
+    it('should sort products by price descending (Test Case ID 6 / 2)', async () => {
         await productsPage.sortProductsBy('hilo');
         const currentPrices = await productsPage.getCurrentProductPrices();
         expect(currentPrices).toEqual(sortedPricesDesc);
     });
 
-    it('should sort products by name ascending (Test Case ID 6)', async () => {
+    it('should sort products by name ascending (Test Case ID 6 / 3)', async () => {
         await productsPage.sortProductsBy('az');
         const currentNames = await productsPage.getCurrentProductNames();
         expect(currentNames).toEqual(sortedNamesAsc);
     });
 
-    it('should sort products by name descending (Test Case ID 6)', async () => {
+    it('should sort products by name descending (Test Case ID 6 / 4)', async () => {
         await productsPage.sortProductsBy('za');
         const currentNames = await productsPage.getCurrentProductNames();
         expect(currentNames).toEqual(sortedNamesDesc);
