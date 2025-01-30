@@ -23,7 +23,7 @@ describe('SauceDemo tests', () => {
         await browser.deleteSession();
     });
 
-    it('Valid data', async () => {
+    it('Valid data (Test Case ID 1)', async () => {
         expect(await browser.getUrl()).toContain('https:');
 
         //Checking the -webkit-text-security CSS property for the password field
@@ -38,7 +38,7 @@ describe('SauceDemo tests', () => {
         expect(await page.getInventoryItemsCount()).toBe(6);
     });
 
-    it('Password invalid', async () => {
+    it('Password invalid (Test Case ID 2)', async () => {
         expect(await browser.getUrl()).toContain('https:');
         await page.login('standard_user', 'secret_sauce111111111111111111111');
         expect(await page.isErrorIconDisplayed()).toBe(true);
@@ -46,7 +46,7 @@ describe('SauceDemo tests', () => {
         expect(await page.getErrorMessage()).toBe('Epic sadface: Username and password do not match any user in this service');
     });
 
-    it('Login invalid', async () => {
+    it('Login invalid (Test Case ID 3)', async () => {
         expect(await browser.getUrl()).toContain('https:');
         await page.login('standard_user11111111111111', 'secret_sauce');
         expect(await page.isErrorIconDisplayed()).toBe(true);
