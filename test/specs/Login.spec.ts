@@ -31,7 +31,7 @@ describe('SauceDemo tests', () => {
 
         await page.login('standard_user', 'secret_sauce');
 
-        //Checking the correctness of URL, page elements
+        //Checking the correctness of title, URL, page elements
         expect(await page.getTitleText()).toBe('Products');
         expect(await browser.getUrl()).toContain('/inventory.html');
         expect(await page.isInventoryListDisplayed()).toBe(true);
