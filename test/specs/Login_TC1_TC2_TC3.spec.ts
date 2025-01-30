@@ -21,7 +21,6 @@ describe('SauceDemo tests', () => {
         // mobile: { width: 375, height: 812 };
         await setWindowSize(browser);
 
-
         page = new LoginPage(browser);
         await page.open();
     });
