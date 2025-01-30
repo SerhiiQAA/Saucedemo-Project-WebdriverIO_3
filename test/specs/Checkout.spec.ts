@@ -46,6 +46,7 @@ describe('SauceDemo tests', () => {
         await checkoutPage.finishCheckout();
         expect(await checkoutPage.getTitleText()).toBe('Checkout: Complete!');
         expect(await browser.getUrl()).toContain('/checkout-complete.html');
+        // success messege
         expect(await checkoutPage.getCompleteHeaderText()).toBe('Thank you for your order!');
 
         await checkoutPage.backToProducts();
@@ -62,6 +63,7 @@ describe('SauceDemo tests', () => {
         await checkoutPage.checkout();
         expect(await checkoutPage.getTitleText()).toBe('Your Cart');
         expect(await browser.getUrl()).toContain('/cart.html');
+        //error message
         expect(await checkoutPage.getCartContentsText()).toContain('Cart is empty');
     });
 });
