@@ -1,7 +1,7 @@
 import { remote, Browser } from 'webdriverio';
 import { LoginPage } from '../pages/LoginPage';
 import { CartPage } from '../pages/CartPage';
-import { setWindowSize } from '../../utils/windowUtils';
+import { setWindowSizes } from '../../utils/windowUtils';
 
 
 describe('SauceDemo tests', () => {
@@ -22,7 +22,7 @@ describe('SauceDemo tests', () => {
         // web: { width: 1280, height: 800 },
         // tablet: { width: 768, height: 1024 },
         // mobile: { width: 375, height: 812 };
-        await setWindowSize(browser);
+        await setWindowSizes(browser);
 
         loginPage = new LoginPage(browser);
         cartPage = new CartPage(browser);
