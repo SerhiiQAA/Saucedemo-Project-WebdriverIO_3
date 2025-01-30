@@ -30,8 +30,8 @@ describe('SauceDemo tests', () => {
     });
 
     //We randomly select a product from the ones available on the page each time we run the test
-    
-    it('Saving the cart after logout', async () => {
+
+    it('Saving the cart after logout (Test Case ID 5)', async () => {
         await cartPage.addRandomProductToCart();
         expect(await cartPage.getCartBadgeText()).toContain('1');
         

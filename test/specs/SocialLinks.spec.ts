@@ -28,7 +28,8 @@ describe('Social Media Links', () => {
         await browser.deleteSession();
     });
 
-    it('should open Twitter page', async () => {
+    // Footer Links (Test Case ID 7)
+    it('should open Twitter page (Test Case ID 7)', async () => {
         await socialMediaPage.clickTwitter();
 
         const handles = await socialMediaPage.getWindowHandles();
@@ -36,10 +37,12 @@ describe('Social Media Links', () => {
 
         await socialMediaPage.switchToWindow(handles[1]);
         const currentUrl = await socialMediaPage.getCurrentUrl();
-        expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);  //We check whether the URL matches the old twitter.com domain or the new x.com domain
+        
+        //We check whether the URL matches the old twitter.com domain or the new x.com domain
+        expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);  
     });
 
-    it('should open Facebook page', async () => {
+    it('should open Facebook page (Test Case ID 7)', async () => {
         await socialMediaPage.clickFacebook();
 
         const handles = await socialMediaPage.getWindowHandles();
@@ -49,7 +52,7 @@ describe('Social Media Links', () => {
         expect(await socialMediaPage.getCurrentUrl()).toBe('https://www.facebook.com/saucelabs');
     });
 
-    it('should open LinkedIn page', async () => {
+    it('should open LinkedIn page (Test Case ID 7)', async () => {
         await socialMediaPage.clickLinkedIn();
 
         const handles = await socialMediaPage.getWindowHandles();

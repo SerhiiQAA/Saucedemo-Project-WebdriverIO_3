@@ -29,7 +29,7 @@ describe('SauceDemo tests', () => {
         await browser.deleteSession();
     });
 
-    it('Checkout with product', async () => {
+    it('Checkout with product (Test Case ID 8)', async () => {
         await checkoutPage.openCart();
         expect(await checkoutPage.getTitleText()).toBe('Your Cart');
         expect(await browser.getUrl()).toContain('/cart.html');
@@ -53,7 +53,7 @@ describe('SauceDemo tests', () => {
         expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
-    it('Checkout without products', async () => {
+    it('Checkout without products (Test Case ID 9)', async () => {
         await checkoutPage.openCart();
         expect(await checkoutPage.getTitleText()).toBe('Your Cart');
         expect(await browser.getUrl()).toContain('/cart.html');

@@ -46,25 +46,26 @@ describe('Filter and sort products', () => {
         expect(await productsPage.isSortContainerDisplayed()).toBe(true);
     });
 
-    it('should sort products by price ascending', async () => {
+    // Sorting products (Test Case ID 6))
+    it('should sort products by price ascending (Test Case ID 6)', async () => {
         await productsPage.sortProductsBy('lohi');
         const currentPrices = await productsPage.getCurrentProductPrices();
         expect(currentPrices).toEqual(sortedPricesAsc);
     });
 
-    it('should sort products by price descending', async () => {
+    it('should sort products by price descending (Test Case ID 6)', async () => {
         await productsPage.sortProductsBy('hilo');
         const currentPrices = await productsPage.getCurrentProductPrices();
         expect(currentPrices).toEqual(sortedPricesDesc);
     });
 
-    it('should sort products by name ascending', async () => {
+    it('should sort products by name ascending (Test Case ID 6)', async () => {
         await productsPage.sortProductsBy('az');
         const currentNames = await productsPage.getCurrentProductNames();
         expect(currentNames).toEqual(sortedNamesAsc);
     });
 
-    it('should sort products by name descending', async () => {
+    it('should sort products by name descending (Test Case ID 6)', async () => {
         await productsPage.sortProductsBy('za');
         const currentNames = await productsPage.getCurrentProductNames();
         expect(currentNames).toEqual(sortedNamesDesc);
