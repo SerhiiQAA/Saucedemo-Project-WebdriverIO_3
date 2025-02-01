@@ -13,6 +13,7 @@ describe('Filter and sort products', () => {
     let sortedPricesDesc: number[] = [];
 
     before(async () => {
+        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
 
         loginPage = new LoginPage(browser);

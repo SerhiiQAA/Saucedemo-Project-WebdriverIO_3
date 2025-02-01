@@ -7,6 +7,7 @@ describe('Social Media Links', () => {
     let socialMediaPage: SocialLinksPage;
 
     before(async () => {
+        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
 
         loginPage = new LoginPage(browser);

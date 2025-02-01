@@ -4,4 +4,4 @@ export const windowSizes: Record<string, { width: number; height: number }> = {
     mobile: { width: 375, height: 812 }
 };
 
-export const defaultSize = 'tablet';
+export const defaultSize = 'mobile';

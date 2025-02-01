@@ -5,7 +5,9 @@ describe('SauceDemo tests', () => {
     let page: LoginPage;
 
     before(async () => {
+        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
+        
         page = new LoginPage(browser);
     });
 

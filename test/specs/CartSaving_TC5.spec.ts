@@ -7,7 +7,9 @@ describe('SauceDemo tests', () => {
     let cartPage: CartPage;
 
     before(async () => {
+        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
+        
         loginPage = new LoginPage(browser);
         cartPage = new CartPage(browser);
     });
