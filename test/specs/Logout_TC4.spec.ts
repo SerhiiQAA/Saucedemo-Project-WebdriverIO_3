@@ -18,6 +18,7 @@ describe('SauceDemo tests', () => {
         await loginPage.open();
         expect(await browser.getUrl()).toContain('https:');
         await loginPage.login('standard_user', 'secret_sauce');
+        expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
     it('Logout (Test Case ID 4)', async () => {
@@ -34,7 +35,7 @@ describe('SauceDemo tests', () => {
         expect(newUrl).not.toBe(initialUrl);
 
         //Checking that the input fields are empty
-        expect(await menuPage.getUsernameValue()).toBe('');
-        expect(await menuPage.getPasswordValue()).toBe('');
+        expect(await menuPage.getUsernameValue()).toHaveValue('');
+        expect(await menuPage.getPasswordValue()).toHaveValue('');
     })
 })

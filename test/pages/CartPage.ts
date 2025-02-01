@@ -13,8 +13,6 @@ export class CartPage {
     get logoutLink() { return this.browser.$('#logout_sidebar_link'); }
     get usernameField() { return this.browser.$('#user-name'); }
     get passwordField() { return this.browser.$('#password'); }
-    // get usernameField() { return this.browser.$('[data-test="username"]'); }
-    // get passwordField() { return this.browser.$('[data-test="password"]'); }
     get inventoryList() { return this.browser.$('.inventory_list'); }
 
     //We randomly select a product from the ones available on the page each time we run the test

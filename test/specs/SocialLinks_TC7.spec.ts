@@ -15,6 +15,7 @@ describe('Social Media Links', () => {
 
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
+        expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
     // Footer Links (Test Case ID 7)

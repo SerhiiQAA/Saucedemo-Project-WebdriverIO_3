@@ -17,6 +17,8 @@ describe('SauceDemo tests', () => {
     beforeEach(async () => {
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
+        expect(await browser.getUrl()).toContain('/inventory.html');
+
     });
 
     //We randomly select a product from the ones available on the page each time we run the test
@@ -26,9 +28,9 @@ describe('SauceDemo tests', () => {
         
         await cartPage.openMenu();
         await cartPage.logout();
-        
-        expect(await cartPage.getUsernameValue()).toBe('');
-        expect(await cartPage.getPasswordValue()).toBe('');
+            
+        await expect(cartPage.usernameField).toHaveValue('');
+        await expect(cartPage.passwordField).toHaveValue('');
         
         //Check that the added product has a Remove button
         await loginPage.login('standard_user', 'secret_sauce');

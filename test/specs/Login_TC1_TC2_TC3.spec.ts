@@ -37,7 +37,7 @@ describe('SauceDemo tests', () => {
         expect(await page.isErrorIconDisplayed()).toBe(true);
         expect(await page.isErrorButtonDisplayed()).toBe(true);
         //error message
-        expect(await page.getErrorMessage()).toBe('Epic sadface: Username and password do not match any user in this service');
+        expect(await page.getErrorMessage()).toHaveText('Epic sadface: Username and password do not match any user in this service');
     });
 
     it('Login invalid (Test Case ID 3)', async () => {
@@ -47,7 +47,7 @@ describe('SauceDemo tests', () => {
         expect(await page.isErrorIconDisplayed()).toBe(true);
         expect(await page.isErrorButtonDisplayed()).toBe(true);
         //error message
-        expect(await page.getErrorMessage()).toBe('Epic sadface: Username and password do not match any user in this service');
+        expect(await page.getErrorMessage()).toHaveText('Epic sadface: Username and password do not match any user in this service');
     });
 
     it('Empty fields', async () => {
@@ -57,6 +57,6 @@ describe('SauceDemo tests', () => {
         expect(await page.isErrorIconDisplayed()).toBe(true);
         expect(await page.isErrorButtonDisplayed()).toBe(true);
         //error message
-        expect(await page.getErrorMessage()).toBe('Epic sadface: Username is required');
+        expect(await page.getErrorMessage()).toHaveText('Epic sadface: Username is required');
     });
 });

@@ -2,6 +2,7 @@ import { Browser } from 'webdriverio';
 
 export class LoginPage { 
     private browser: Browser;
+    inventoryItems: any;
 
     constructor(browser: Browser) {
         this.browser = browser;

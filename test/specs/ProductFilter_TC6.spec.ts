@@ -20,8 +20,8 @@ describe('Filter and sort products', () => {
         productsPage = new ProductFilterPage(browser);
 
         await loginPage.open();
-        expect(await browser.getUrl()).toContain('https://www.saucedemo.com');
         await loginPage.login('standard_user', 'secret_sauce');
+        expect(await browser.getUrl()).toContain('/inventory.html');
 
         // Collecting product names
         itemNamesArray = await productsPage.collectProductNames();

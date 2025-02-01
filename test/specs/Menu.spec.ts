@@ -17,6 +17,7 @@ describe('SauceDemo tests', () => {
     beforeEach(async () => {
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
+        expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
     it('Menu components (Test Case ID 4)', async () => {
@@ -35,8 +36,8 @@ describe('SauceDemo tests', () => {
         expect(newUrl).not.toBe(initialUrl);
 
         //Checking that the input fields are empty
-        expect(await menuPage.getUsernameValue()).toBe('');
-        expect(await menuPage.getPasswordValue()).toBe('');
+        expect(await menuPage.getUsernameValue()).toHaveValue('');
+        expect(await menuPage.getPasswordValue()).toHaveValue('');
     });
 
     // The tests below do not pass yet, as the corresponding features have not been implemented. 
