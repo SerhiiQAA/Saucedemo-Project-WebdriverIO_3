@@ -11,8 +11,10 @@ export class CartPage {
     get shoppingCartBadge() { return this.browser.$('.shopping_cart_badge'); }
     get menuButton() { return this.browser.$('.bm-burger-button'); }
     get logoutLink() { return this.browser.$('#logout_sidebar_link'); }
-    get usernameField() { return this.browser.$('[data-test="username"]'); }
-    get passwordField() { return this.browser.$('[data-test="password"]'); }
+    get usernameField() { return this.browser.$('#user-name'); }
+    get passwordField() { return this.browser.$('#password'); }
+    // get usernameField() { return this.browser.$('[data-test="username"]'); }
+    // get passwordField() { return this.browser.$('[data-test="password"]'); }
     get inventoryList() { return this.browser.$('.inventory_list'); }
 
     //We randomly select a product from the ones available on the page each time we run the test

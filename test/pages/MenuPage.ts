@@ -9,9 +9,9 @@ export class MenuPage {
 
     get menuButton() { return this.browser.$('.bm-burger-button'); }
     get menuItems() { return this.browser.$$('.bm-item-list a'); }
-    get logoutLink() { return this.browser.$('[data-test="logout-sidebar-link"]'); }
-    get usernameField() { return this.browser.$('[data-test="username"]'); }
-    get passwordField() { return this.browser.$('[data-test="password"]'); }
+    get logoutLink() { return this.browser.$('#logout_sidebar_link'); }
+    get usernameField() { return this.browser.$('#user-name'); }
+    get passwordField() { return this.browser.$('#password'); }
 
     async openMenu(): Promise<void> {
         await (await this.menuButton).click();

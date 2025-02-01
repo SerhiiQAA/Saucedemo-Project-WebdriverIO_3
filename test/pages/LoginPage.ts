@@ -9,7 +9,7 @@ export class LoginPage {
 
     get usernameField() { return this.browser.$('#user-name'); }
     get passwordField() { return this.browser.$('#password'); }
-    get loginButton() { return this.browser.$('#login-button[type=submit]'); }
+    get loginButton() { return this.browser.$('#login-button'); }
     get title() { return this.browser.$('.title'); }
     get inventoryList() { return this.browser.$('[data-test="inventory-list"]'); }
     get errorMessage() { return this.browser.$('[data-test="error"]'); }
