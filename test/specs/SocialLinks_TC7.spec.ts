@@ -1,27 +1,12 @@
-import { remote, Browser } from 'webdriverio';
 import { LoginPage } from '../pages/LoginPage';
 import { SocialLinksPage } from '../pages/SocialLinksPage';
 import { setWindowSize } from '../../utils/windowUtils';
 
-
 describe('Social Media Links', () => {
-    let browser: Browser;
     let loginPage: LoginPage;
     let socialMediaPage: SocialLinksPage;
 
-    beforeEach(async () => {
-        browser = await remote({
-            logLevel: 'info',
-            path: '/',
-            capabilities: {
-                browserName: 'chrome'
-            }
-        });
-
-        // Possible options:
-        // web: { width: 1280, height: 800 },
-        // tablet: { width: 768, height: 1024 },
-        // mobile: { width: 375, height: 812 };
+    before(async () => {
         await setWindowSize(browser);
 
         loginPage = new LoginPage(browser);
@@ -31,10 +16,6 @@ describe('Social Media Links', () => {
         await loginPage.login('standard_user', 'secret_sauce');
     });
 
-    afterEach(async () => {
-        await browser.deleteSession();
-    });
-
     // Footer Links (Test Case ID 7)
     it('should open Twitter page (Test Case ID 7 / 1)', async () => {
         await socialMediaPage.clickTwitter();
@@ -42,11 +23,14 @@ describe('Social Media Links', () => {
         const handles = await socialMediaPage.getWindowHandles();
         expect(handles.length).toBeGreaterThan(1);
 
-        await socialMediaPage.switchToWindow(handles[1]);
+        await browser.switchToWindow(handles[1]);
         const currentUrl = await socialMediaPage.getCurrentUrl();
         
-        //We check whether the URL matches the old twitter.com domain or the new x.com domain
-        expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);  
+        // We check whether the URL matches the old twitter.com domain or the new x.com domain
+        expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);
+
+        await browser.closeWindow();
+        await browser.switchToWindow(handles[0]);
     });
 
     it('should open Facebook page (Test Case ID 7 / 2)', async () => {
@@ -55,8 +39,12 @@ describe('Social Media Links', () => {
         const handles = await socialMediaPage.getWindowHandles();
         expect(handles.length).toBeGreaterThan(1);
 
-        await socialMediaPage.switchToWindow(handles[1]);
-        expect(await socialMediaPage.getCurrentUrl()).toBe('https://www.facebook.com/saucelabs');
+        await browser.switchToWindow(handles[1]);
+        const currentUrl = await socialMediaPage.getCurrentUrl();
+        expect(currentUrl).toBe('https://www.facebook.com/saucelabs');
+
+        await browser.closeWindow();
+        await browser.switchToWindow(handles[0]);
     });
 
     it('should open LinkedIn page (Test Case ID 7 / 3)', async () => {
@@ -65,7 +53,11 @@ describe('Social Media Links', () => {
         const handles = await socialMediaPage.getWindowHandles();
         expect(handles.length).toBeGreaterThan(1);
 
-        await socialMediaPage.switchToWindow(handles[1]);
-        expect(await socialMediaPage.getCurrentUrl()).toBe('https://www.linkedin.com/company/sauce-labs/');
+        await browser.switchToWindow(handles[1]);
+        const currentUrl = await socialMediaPage.getCurrentUrl();
+        expect(currentUrl).toBe('https://www.linkedin.com/company/sauce-labs/');
+
+        await browser.closeWindow();
+        await browser.switchToWindow(handles[0]);
     });
 });

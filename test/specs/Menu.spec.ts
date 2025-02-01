@@ -1,38 +1,20 @@
-import { remote, Browser } from 'webdriverio';
 import { LoginPage } from '../pages/LoginPage';
 import { MenuPage } from '../pages/MenuPage';
 import { setWindowSize } from '../../utils/windowUtils';
 
 describe('SauceDemo tests', () => {
-    let browser: Browser;
     let loginPage: LoginPage;
     let menuPage: MenuPage;
 
-    beforeEach(async () => {
-        browser = await remote({
-            logLevel: 'info',
-            path: '/',
-            capabilities: {
-                browserName: 'chrome'
-            }
-        });
-
-        // Possible options:
-        // web: { width: 1280, height: 800 },
-        // tablet: { width: 768, height: 1024 },
-        // mobile: { width: 375, height: 812 };
+    before(async () => {
         await setWindowSize(browser);
-
         loginPage = new LoginPage(browser);
         menuPage = new MenuPage(browser);
-
-        await loginPage.open();
-        expect(await browser.getUrl()).toContain('https:');
-        await loginPage.login('standard_user', 'secret_sauce');
     });
 
-    afterEach(async () => {
-        await browser.deleteSession();
+    beforeEach(async () => {
+        await loginPage.open();
+        await loginPage.login('standard_user', 'secret_sauce');
     });
 
     it('Menu components (Test Case ID 4)', async () => {

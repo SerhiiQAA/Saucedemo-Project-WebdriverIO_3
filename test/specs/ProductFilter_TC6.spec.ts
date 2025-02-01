@@ -1,11 +1,8 @@
-import { remote, Browser } from 'webdriverio';
 import { LoginPage } from '../pages/LoginPage';
 import { ProductFilterPage } from '../pages/ProductFilterPage';
 import { setWindowSize } from '../../utils/windowUtils';
 
-
 describe('Filter and sort products', () => {
-    let browser: Browser;
     let loginPage: LoginPage;
     let productsPage: ProductFilterPage;
     let itemNamesArray: string[] = [];
@@ -16,24 +13,13 @@ describe('Filter and sort products', () => {
     let sortedPricesDesc: number[] = [];
 
     before(async () => {
-        browser = await remote({
-            logLevel: 'info',
-            path: '/',
-            capabilities: {
-                browserName: 'chrome'
-            }
-        });
-
-        // Possible options:
-        // web: { width: 1280, height: 800 },
-        // tablet: { width: 768, height: 1024 },
-        // mobile: { width: 375, height: 812 };
         await setWindowSize(browser);
 
         loginPage = new LoginPage(browser);
         productsPage = new ProductFilterPage(browser);
 
         await loginPage.open();
+        expect(await browser.getUrl()).toContain('https://www.saucedemo.com');
         await loginPage.login('standard_user', 'secret_sauce');
 
         // Collecting product names
@@ -49,11 +35,11 @@ describe('Filter and sort products', () => {
 
     beforeEach(async () => {
         await loginPage.open();
+        expect(await browser.getUrl()).toContain('https://www.saucedemo.com');
         await loginPage.login('standard_user', 'secret_sauce');
         expect(await productsPage.isSortContainerDisplayed()).toBe(true);
     });
 
-    // Sorting products (Test Case ID 6))
     it('should sort products by price ascending (Test Case ID 6 / 1)', async () => {
         await productsPage.sortProductsBy('lohi');
         const currentPrices = await productsPage.getCurrentProductPrices();
@@ -77,9 +63,4 @@ describe('Filter and sort products', () => {
         const currentNames = await productsPage.getCurrentProductNames();
         expect(currentNames).toEqual(sortedNamesDesc);
     });
-
-    after(async () => {
-        await browser.deleteSession();
-    });
 });
-
