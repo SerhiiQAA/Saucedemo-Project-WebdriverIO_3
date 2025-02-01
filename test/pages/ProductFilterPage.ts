@@ -7,47 +7,51 @@ export class ProductFilterPage {
         this.browser = browser;
     }
 
+    get itemNames() { return this.browser.$$('.inventory_item_name'); }
+    get itemPrices() { return this.browser.$$('.inventory_item_price'); }
+    get sortContainer() { return this.browser.$('.select_container .product_sort_container'); }
+
     async collectProductNames(): Promise<string[]> {
-        const itemNames = await this.browser.$$('.inventory_item_name');
+        const items = await this.itemNames;
         const names: string[] = [];
-        for (let i = 0; i < await itemNames.length; i++) {
-            names.push(await itemNames[i].getText());
+        for (const item of items) {
+            names.push(await item.getText());
         }
         return names;
     }
 
     async collectProductPrices(): Promise<number[]> {
-        const itemPrices = await this.browser.$$('.inventory_item_price');
+        const items = await this.itemPrices;
         const prices: number[] = [];
-        for (let i = 0; i < await itemPrices.length; i++) {
-            prices.push(parseFloat((await itemPrices[i].getText()).replace('$', '')));
+        for (const item of items) {
+            prices.push(parseFloat((await item.getText()).replace('$', '')));
         }
         return prices;
     }
 
     async sortProductsBy(sortType: string): Promise<void> {
-        await (await this.browser.$('.select_container .product_sort_container')).selectByAttribute('value', sortType);
+        await (await this.sortContainer).selectByAttribute('value', sortType);
     }
 
     async getCurrentProductPrices(): Promise<number[]> {
-        const itemPrices = await this.browser.$$('.inventory_item_price');
-        const currentPrices: number[] = [];
-        for (let i = 0; i < await itemPrices.length; i++) {
-            currentPrices.push(parseFloat((await itemPrices[i].getText()).replace('$', '')));
+        const items = await this.itemPrices;
+        const prices: number[] = [];
+        for (const item of items) {
+            prices.push(parseFloat((await item.getText()).replace('$', '')));
         }
-        return currentPrices;
+        return prices;
     }
 
     async getCurrentProductNames(): Promise<string[]> {
-        const itemNames = await this.browser.$$('.inventory_item_name');
-        const currentNames: string[] = [];
-        for (let i = 0; i < await itemNames.length; i++) {
-            currentNames.push(await itemNames[i].getText());
+        const items = await this.itemNames;
+        const names: string[] = [];
+        for (const item of items) {
+            names.push(await item.getText());
         }
-        return currentNames;
+        return names;
     }
 
     async isSortContainerDisplayed(): Promise<boolean> {
-        return await (await this.browser.$('.select_container .product_sort_container')).isDisplayed();
+        return await (await this.sortContainer).isDisplayed();
     }
 }

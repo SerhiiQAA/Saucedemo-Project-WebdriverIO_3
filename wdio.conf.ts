@@ -1,4 +1,5 @@
 export const config: WebdriverIO.Config = {
+    
     baseUrl: 'https://www.saucedemo.com/',
 
     runner: 'local',
@@ -20,7 +21,10 @@ export const config: WebdriverIO.Config = {
         {
             browserName: 'chrome',
             'goog:chromeOptions': {
-                args: ['--headless', '--disable-gpu', '--window-size=1280,720']
+                args: [
+                    // '--headless', 
+                    '--disable-gpu', 
+                    '--window-size=1280,720']
             }
         },
         // {

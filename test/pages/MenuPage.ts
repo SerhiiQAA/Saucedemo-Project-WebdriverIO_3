@@ -7,17 +7,23 @@ export class MenuPage {
         this.browser = browser;
     }
 
+    get menuButton() { return this.browser.$('.bm-burger-button'); }
+    get menuItems() { return this.browser.$$('.bm-item-list a'); }
+    get logoutLink() { return this.browser.$('[data-test="logout-sidebar-link"]'); }
+    get usernameField() { return this.browser.$('[data-test="username"]'); }
+    get passwordField() { return this.browser.$('[data-test="password"]'); }
+
     async openMenu(): Promise<void> {
-        await (await this.browser.$('.bm-burger-button')).click();
+        await (await this.menuButton).click();
     }
 
     async getMenuItemsCount(): Promise<number> {
-        const menuItems = await this.browser.$$('.bm-item-list a');
+        const menuItems = await this.menuItems;
         return menuItems.length;
     }
 
     async logout(): Promise<void> {
-        await (await this.browser.$('[data-test="logout-sidebar-link"]')).click();
+        await (await this.logoutLink).click();
     }
 
     async getCurrentUrl(): Promise<string> {
@@ -25,10 +31,10 @@ export class MenuPage {
     }
 
     async getUsernameValue(): Promise<string> {
-        return await (await this.browser.$('[data-test="username"]')).getValue();
+        return await (await this.usernameField).getValue();
     }
 
     async getPasswordValue(): Promise<string> {
-        return await (await this.browser.$('[data-test="password"]')).getValue();
+        return await (await this.passwordField).getValue();
     }
 }

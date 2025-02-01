@@ -7,16 +7,20 @@ export class SocialLinksPage {
         this.browser = browser;
     }
 
+    get twitterIcon() { return this.browser.$('.social_twitter'); }
+    get facebookIcon() { return this.browser.$('.social_facebook'); }
+    get linkedInIcon() { return this.browser.$('.social_linkedin'); }
+
     async clickTwitter(): Promise<void> {
-        await (await this.browser.$('[data-test="social-twitter"]')).click();
+        await (await this.twitterIcon).click();
     }
 
     async clickFacebook(): Promise<void> {
-        await (await this.browser.$('[data-test="social-facebook"]')).click();
+        await (await this.facebookIcon).click();
     }
 
     async clickLinkedIn(): Promise<void> {
-        await (await this.browser.$('[data-test="social-linkedin"]')).click();
+        await (await this.linkedInIcon).click();
     }
 
     async getWindowHandles(): Promise<string[]> {
