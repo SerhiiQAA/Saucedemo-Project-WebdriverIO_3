@@ -1,48 +1,60 @@
 import { Browser } from 'webdriverio';
 
 export class CartPage {
-    private browser: Browser;
+  private browser: Browser;
 
-    constructor(browser: Browser) {
-        this.browser = browser;
-    }
+  constructor(browser: Browser) {
+    this.browser = browser;
+  }
 
-    get priceButtons() { return this.browser.$$('.pricebar button'); }
-    get shoppingCartBadge() { return this.browser.$('.shopping_cart_badge'); }
-    get menuButton() { return this.browser.$('.bm-burger-button'); }
-    get logoutLink() { return this.browser.$('#logout_sidebar_link'); }
-    get usernameField() { return this.browser.$('#user-name'); }
-    get passwordField() { return this.browser.$('#password'); }
-    get inventoryList() { return this.browser.$('.inventory_list'); }
+  get selectors() {
+    return {
+      priceButtons: '.pricebar button',
+      shoppingCartBadge: '.shopping_cart_badge',
+      menuButton: '.bm-burger-button',
+      logoutLink: '#logout_sidebar_link',
+      usernameField: '#user-name',
+      passwordField: '#password',
+      inventoryList: '.inventory_list'
+    };
+  }
 
-    //We randomly select a product from the ones available on the page each time we run the test
-    async addRandomProductToCart(): Promise<void> {
-        const buttons = await this.priceButtons;
-        const randomIndex = Math.floor(Math.random() * await buttons.length);
-        await buttons[randomIndex].click();
-    }
+  get priceButtons() { return this.browser.$$(this.selectors.priceButtons); }
+  get shoppingCartBadge() { return this.browser.$(this.selectors.shoppingCartBadge); }
+  get menuButton() { return this.browser.$(this.selectors.menuButton); }
+  get logoutLink() { return this.browser.$(this.selectors.logoutLink); }
+  get usernameField() { return this.browser.$(this.selectors.usernameField); }
+  get passwordField() { return this.browser.$(this.selectors.passwordField); }
+  get inventoryList() { return this.browser.$(this.selectors.inventoryList); }
 
-    async getCartBadgeText(): Promise<string> {
-        return await (await this.shoppingCartBadge).getText();
-    }
+  // We randomly select a product from the ones available on the page each time we run the test
+  async addRandomProductToCart(): Promise<void> {
+    const buttons = await this.priceButtons;
+    const randomIndex = Math.floor(Math.random() * await buttons.length);
+    await buttons[randomIndex].click();
+  }
 
-    async openMenu(): Promise<void> {
-        await (await this.menuButton).click();
-    }
+  async getCartBadgeText(): Promise<string> {
+    return await (await this.shoppingCartBadge).getText();
+  }
 
-    async logout(): Promise<void> {
-        await (await this.logoutLink).click();
-    }
+  async openMenu(): Promise<void> {
+    await (await this.menuButton).click();
+  }
 
-    async getUsernameValue(): Promise<string> {
-        return await (await this.usernameField).getValue();
-    }
+  async logout(): Promise<void> {
+    await (await this.logoutLink).click();
+  }
 
-    async getPasswordValue(): Promise<string> {
-        return await (await this.passwordField).getValue();
-    }
+  async getUsernameValue(): Promise<string> {
+    return await (await this.usernameField).getValue();
+  }
 
-    async getInventoryText(): Promise<string> {
-        return await (await this.inventoryList).getText();
-    }
+  async getPasswordValue(): Promise<string> {
+    return await (await this.passwordField).getValue();
+  }
+
+  async getInventoryText(): Promise<string> {
+    return await (await this.inventoryList).getText();
+  }
 }

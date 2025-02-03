@@ -1,71 +1,75 @@
 import { Browser } from 'webdriverio';
 
 export class LoginPage { 
-    private browser: Browser;
-    inventoryItems: any;
+  private browser: Browser;
+  inventoryItems: any;
 
-    constructor(browser: Browser) {
-        this.browser = browser;
+  constructor(browser: Browser) {
+    this.browser = browser;
+  }
+
+  get selectors() {
+    return {
+      usernameField: '#user-name',
+      passwordField: '#password',
+      loginButton: '#login-button',
+      title: '.title',
+      inventoryList: '[data-test="inventory-list"]',
+      errorMessage: '[data-test="error"]',
+      xErrorIcons: 'div.form_group > svg',
+      xErrorIconUsername: 'div.form_group > svg:nth-child(1)',
+      xErrorIconPassword: 'div.form_group > svg:nth-child(2)',
+      xErrorButton: '.error-button'
+    };
+  }
+
+  async open(): Promise<void> {
+    await this.browser.url('https://www.saucedemo.com/');
+  }
+
+  async login(username: string, password: string): Promise<void> {
+    await (await this.browser.$(this.selectors.usernameField)).setValue(username);
+    await (await this.browser.$(this.selectors.passwordField)).setValue(password);
+    await (await this.browser.$(this.selectors.loginButton)).click();
+  }
+
+  async getPasswordFieldType(): Promise<string> {
+    const passwordField = await this.browser.$(this.selectors.passwordField);
+    await passwordField.waitForExist({ timeout: 5000 }); 
+
+    // Checking that we see dots when entering a password
+    const cssProperty = await passwordField.getCSSProperty('-webkit-text-security');
+    return cssProperty?.value ?? '';
+  }
+
+  async getTitleText(): Promise<string> {
+    return await (await this.browser.$(this.selectors.title)).getText();
+  }
+
+  async isInventoryListDisplayed(): Promise<boolean> {
+    return await (await this.browser.$(this.selectors.inventoryList)).isDisplayed();
+  }
+
+  async getInventoryItemsCount(): Promise<number> {
+    const items = await this.browser.$$('.inventory_list .inventory_item');
+    return items.length;
+  }
+
+  async getErrorMessage(): Promise<string> {
+    return await (await this.browser.$(this.selectors.errorMessage)).getText();
+  }
+
+  async isErrorIconDisplayed(): Promise<boolean> {
+    const icons = await this.browser.$$(this.selectors.xErrorIcons);
+    for (const icon of icons) {
+      if (!(await icon.isDisplayed())) {
+        return false;
+      }
     }
+    return true;
+  }
 
-    get usernameField() { return this.browser.$('#user-name'); }
-    get passwordField() { return this.browser.$('#password'); }
-    get loginButton() { return this.browser.$('#login-button'); }
-    get title() { return this.browser.$('.title'); }
-    get inventoryList() { return this.browser.$('[data-test="inventory-list"]'); }
-    get errorMessage() { return this.browser.$('[data-test="error"]'); }
-    get xErrorIcons() { return this.browser.$$('div.form_group > svg'); }
-    get xErrorIconUsername() { return this.browser.$$('div.form_group > svg')[0]; }
-    get xErrorIconPassword() { return this.browser.$$('div.form_group > svg')[1]; }
-    get xErrorButton() { return this.browser.$('.error-button'); }
-
-    async open(): Promise<void> {
-        await this.browser.url('https://www.saucedemo.com/');
-    }
-
-    async login(username: string, password: string): Promise<void> {
-        await (await this.usernameField).setValue(username);
-        await (await this.passwordField).setValue(password);
-        await (await this.loginButton).click();
-    }
-
-    async getPasswordFieldType(): Promise<string> {
-        const passwordField = await this.passwordField;
-        await passwordField.waitForExist({ timeout: 5000 }); 
-
-        // Checking that we see dots when entering a password
-        const cssProperty = await passwordField.getCSSProperty('-webkit-text-security');
-        return cssProperty?.value ?? '';
-    }
-
-    async getTitleText(): Promise<string> {
-        return await (await this.title).getText();
-    }
-
-    async isInventoryListDisplayed(): Promise<boolean> {
-        return await (await this.inventoryList).isDisplayed();
-    }
-
-    async getInventoryItemsCount(): Promise<number> {
-        const items = await this.browser.$$('.inventory_list .inventory_item');
-        return items.length;
-    }
-
-    async getErrorMessage(): Promise<string> {
-        return await (await this.errorMessage).getText();
-    }
-
-    async isErrorIconDisplayed(): Promise<boolean> {
-        const icons = await this.xErrorIcons;
-        for (const icon of icons) {
-            if (!(await icon.isDisplayed())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    async isErrorButtonDisplayed(): Promise<boolean> {
-        return await (await this.xErrorButton).isDisplayed();
-    }
+  async isErrorButtonDisplayed(): Promise<boolean> {
+    return await (await this.browser.$(this.selectors.xErrorButton)).isDisplayed();
+  }
 }
