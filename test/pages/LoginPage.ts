@@ -15,6 +15,8 @@ export class LoginPage {
     get inventoryList() { return this.browser.$('[data-test="inventory-list"]'); }
     get errorMessage() { return this.browser.$('[data-test="error"]'); }
     get xErrorIcons() { return this.browser.$$('div.form_group > svg'); }
+    get xErrorIconUsername() { return this.browser.$$('div.form_group > svg')[0]; }
+    get xErrorIconPassword() { return this.browser.$$('div.form_group > svg')[1]; }
     get xErrorButton() { return this.browser.$('.error-button'); }
 
     async open(): Promise<void> {
