@@ -14,8 +14,8 @@ export class LoginPage {
     get title() { return this.browser.$('.title'); }
     get inventoryList() { return this.browser.$('[data-test="inventory-list"]'); }
     get errorMessage() { return this.browser.$('[data-test="error"]'); }
-    get errorIcons() { return this.browser.$$('div.form_group > svg'); }
-    get errorButton() { return this.browser.$('.error-button'); }
+    get xErrorIcons() { return this.browser.$$('div.form_group > svg'); }
+    get xErrorButton() { return this.browser.$('.error-button'); }
 
     async open(): Promise<void> {
         await this.browser.url('https://www.saucedemo.com/');
@@ -54,7 +54,7 @@ export class LoginPage {
     }
 
     async isErrorIconDisplayed(): Promise<boolean> {
-        const icons = await this.errorIcons;
+        const icons = await this.xErrorIcons;
         for (const icon of icons) {
             if (!(await icon.isDisplayed())) {
                 return false;
@@ -64,6 +64,6 @@ export class LoginPage {
     }
 
     async isErrorButtonDisplayed(): Promise<boolean> {
-        return await (await this.errorButton).isDisplayed();
+        return await (await this.xErrorButton).isDisplayed();
     }
 }
