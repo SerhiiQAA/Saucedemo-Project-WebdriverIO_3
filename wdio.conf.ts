@@ -26,13 +26,18 @@ export const config: WebdriverIO.Config = {
                     '--disable-gpu', 
                     '--window-size=1280,720']
             }
-        },
+        // },
         // {
         //     browserName: 'firefox'
         // }
         // {
-        //     browserName: 'MicrosoftEdge'
+        //     browserName: 'MicrosoftEdge',
+        //     'ms:edgeOptions': {
+        //     args: ['--headless', 
+        //         '--disable-gpu', 
+        //         '--window-size=1280,800']
         // }
+    }
 ],
 
    
