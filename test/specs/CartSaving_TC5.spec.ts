@@ -18,7 +18,6 @@ describe('SauceDemo tests', () => {
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
         expect(await browser.getUrl()).toContain('/inventory.html');
-
     });
 
     //We randomly select a product from the ones available on the page each time we run the test
