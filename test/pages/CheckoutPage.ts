@@ -1,6 +1,15 @@
 import { Browser } from 'webdriverio';
 
 export class CheckoutPage {
+  completeHeader(_completeHeader: any) {
+      throw new Error('Method not implemented.');
+  }
+  title(_title: any) {
+      throw new Error('Method not implemented.');
+  }
+  cartContentsContainer(_cartContentsContainer: any) {
+      throw new Error('Method not implemented.');
+  }
   private browser: Browser;
 
   constructor(browser: Browser) {

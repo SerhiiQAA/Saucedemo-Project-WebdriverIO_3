@@ -39,37 +39,5 @@ describe('SauceDemo tests', () => {
         expect(await menuPage.getUsernameValue()).toHaveValue('');
         expect(await menuPage.getPasswordValue()).toHaveValue('');
     });
-
-    // The tests below do not pass yet, as the corresponding features have not been implemented. 
-    // This is for the future. Please comment and run the following tests as needed
-    // Uncomment and implement the following tests if needed
-
-    // it('About', async () => {
-    //     await menuPage.openMenu();
-        
-    //     await (await browser.$('#about_sidebar_link')).click();
-        
-    //     await browser.pause(1000);
-    //     expect(await browser.getUrl()).toContain('saucelabs.com');
-        
-    //     const box = await browser.$('.MuiBox-root.css-6ohz81');
-    //     expect(await box.getText()).toContain('The world relies on your code.');
-    // });
-
-    // it('All Items', async () => {
-    //     await menuPage.openMenu();
-        
-    //     await (await browser.$('#reset_sidebar_link')).click();
-        
-    //     expect(await browser.getUrl()).not.toBe('https://www.saucedemo.com/inventory.html');
-    // });
-
-    // it('Reset App State', async () => {
-    //     await menuPage.openMenu();
-        
-    //     await (await browser.$('#reset_sidebar_link')).click();
-        
-    //     expect(await browser.getUrl()).not.toBe('https://www.saucedemo.com/inventory.html');
-    // });
 });
 
