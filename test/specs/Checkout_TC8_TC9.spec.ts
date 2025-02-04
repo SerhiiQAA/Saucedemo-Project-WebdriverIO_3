@@ -7,7 +7,6 @@ describe('SauceDemo tests', () => {
     let checkoutPage: CheckoutPage;
 
     before(async () => {
-        // Window sizes: web, tablet, mobile
         await setWindowSize(browser);
         
         loginPage = new LoginPage(browser);
@@ -37,7 +36,6 @@ describe('SauceDemo tests', () => {
         await checkoutPage.finishCheckout();
         await expect(checkoutPage.title).toHaveText('Checkout: Complete!');
         expect(await browser.getUrl()).toContain('/checkout-complete.html');
-        // success message
         await expect(checkoutPage.completeHeader).toHaveText('Thank you for your order!');
 
         await checkoutPage.backToProducts();
@@ -54,7 +52,6 @@ describe('SauceDemo tests', () => {
         await checkoutPage.checkout();
         await expect(checkoutPage.title).toHaveText('Your Cart');
         expect(await browser.getUrl()).toContain('/cart.html');
-        // error message
         await expect(checkoutPage.cartContentsContainer).toHaveText('Cart is empty');
     });
 });

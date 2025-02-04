@@ -13,7 +13,6 @@ describe('Filter and sort products', () => {
     let sortedPricesDesc: number[] = [];
 
     before(async () => {
-        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
 
         loginPage = new LoginPage(browser);
@@ -23,12 +22,10 @@ describe('Filter and sort products', () => {
         await loginPage.login('standard_user', 'secret_sauce');
         expect(await browser.getUrl()).toContain('/inventory.html');
 
-        // Collecting product names
         itemNamesArray = await productsPage.collectProductNames();
         sortedNamesAsc = [...itemNamesArray].sort();
         sortedNamesDesc = [...itemNamesArray].sort().reverse();
 
-        // Collecting prices of goods
         itemPricesArray = await productsPage.collectProductPrices();
         sortedPricesAsc = [...itemPricesArray].sort((a, b) => a - b);
         sortedPricesDesc = [...itemPricesArray].sort((a, b) => b - a);

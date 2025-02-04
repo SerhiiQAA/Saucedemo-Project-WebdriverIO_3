@@ -7,7 +7,6 @@ describe('Social Media Links', () => {
     let socialMediaPage: SocialLinksPage;
 
     before(async () => {
-        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
 
         loginPage = new LoginPage(browser);
@@ -18,7 +17,6 @@ describe('Social Media Links', () => {
         expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
-    // Footer Links (Test Case ID 7)
     it('should open Twitter page (Test Case ID 7 / 1)', async () => {
         await socialMediaPage.clickTwitter();
 
@@ -28,7 +26,6 @@ describe('Social Media Links', () => {
         await browser.switchToWindow(handles[1]);
         const currentUrl = await socialMediaPage.getCurrentUrl();
         
-        // We check whether the URL matches the old twitter.com domain or the new x.com domain
         expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);
 
         await browser.closeWindow();

@@ -7,7 +7,6 @@ describe('SauceDemo tests', () => {
     let cartPage: CartPage;
 
     before(async () => {
-        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
         
         loginPage = new LoginPage(browser);
@@ -20,7 +19,6 @@ describe('SauceDemo tests', () => {
         expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
-    //We randomly select a product from the ones available on the page each time we run the test
     it('Saving the cart after logout (Test Case ID 5)', async () => {
         await cartPage.addRandomProductToCart();
         expect(await cartPage.getCartBadgeText()).toContain('1');
@@ -31,7 +29,6 @@ describe('SauceDemo tests', () => {
         await expect(cartPage.usernameField).toHaveValue('');
         await expect(cartPage.passwordField).toHaveValue('');
         
-        //Check that the added product has a Remove button
         await loginPage.login('standard_user', 'secret_sauce');
         expect(await cartPage.getCartBadgeText()).toContain('1');
         expect(await cartPage.getInventoryText()).toContain('Remove');

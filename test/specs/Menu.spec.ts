@@ -7,7 +7,6 @@ describe('SauceDemo tests', () => {
     let menuPage: MenuPage;
 
     before(async () => {
-        //Window sizes: web, tablet, mobile
         await setWindowSize(browser);
         
         loginPage = new LoginPage(browser);
@@ -35,7 +34,6 @@ describe('SauceDemo tests', () => {
         const newUrl = await menuPage.getCurrentUrl();
         expect(newUrl).not.toBe(initialUrl);
 
-        //Checking that the input fields are empty
         expect(await menuPage.getUsernameValue()).toHaveValue('');
         expect(await menuPage.getPasswordValue()).toHaveValue('');
     });

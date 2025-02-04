@@ -37,7 +37,6 @@ export class LoginPage {
     const passwordField = await this.browser.$(this.selectors.passwordField);
     await passwordField.waitForExist({ timeout: 5000 }); 
 
-    // Checking that we see dots when entering a password
     const cssProperty = await passwordField.getCSSProperty('-webkit-text-security');
     return cssProperty?.value ?? '';
   }
