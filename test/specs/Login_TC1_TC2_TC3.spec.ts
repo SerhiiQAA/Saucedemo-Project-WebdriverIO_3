@@ -15,9 +15,7 @@ describe('SauceDemo tests', () => {
 
     it('Valid data (Test Case ID 1)', async () => {
         expect(await page.getPasswordFieldType()).toBe('disc');
-
         await page.login('standard_user', 'secret_sauce');
-
         expect(await page.getTitleText()).toBe('Products');
         expect(await browser.getUrl()).toContain('/inventory.html');
         expect(await page.isInventoryListDisplayed()).toBe(true);

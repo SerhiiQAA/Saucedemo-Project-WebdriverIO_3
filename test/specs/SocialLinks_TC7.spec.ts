@@ -10,7 +10,6 @@ describe('Social Media Links', () => {
         await setWindowSize(browser);
         loginPage = new LoginPage(browser);
         socialMediaPage = new SocialLinksPage(browser);
-
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
         await expect(await browser.getUrl()).toContain('/inventory.html');

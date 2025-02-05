@@ -13,7 +13,6 @@ describe('Filter and sort products', () => {
     beforeEach(async () => {
         loginPage = new LoginPage(browser);
         productsPage = new ProductFilterPage(browser);
-
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
         await expect(await browser.getUrl()).toContain('/inventory.html');
