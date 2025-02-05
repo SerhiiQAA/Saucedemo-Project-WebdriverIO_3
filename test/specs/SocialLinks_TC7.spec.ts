@@ -14,19 +14,17 @@ describe('Social Media Links', () => {
 
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
-        expect(await browser.getUrl()).toContain('/inventory.html');
+        await expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
     it('should open Twitter page (Test Case ID 7 / 1)', async () => {
         await socialMediaPage.clickTwitter();
 
         const handles = await socialMediaPage.getWindowHandles();
-        expect(handles.length).toBeGreaterThan(1);
+        await expect(handles.length).toBeGreaterThan(1);
 
         await browser.switchToWindow(handles[1]);
-        const currentUrl = await socialMediaPage.getCurrentUrl();
-        
-        expect(currentUrl).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);
+        await expect(await socialMediaPage.getCurrentUrl()).toMatch(/https:\/\/(twitter|x)\.com\/saucelabs/);
 
         await browser.closeWindow();
         await browser.switchToWindow(handles[0]);
@@ -36,11 +34,10 @@ describe('Social Media Links', () => {
         await socialMediaPage.clickFacebook();
 
         const handles = await socialMediaPage.getWindowHandles();
-        expect(handles.length).toBeGreaterThan(1);
+        await expect(handles.length).toBeGreaterThan(1);
 
         await browser.switchToWindow(handles[1]);
-        const currentUrl = await socialMediaPage.getCurrentUrl();
-        expect(currentUrl).toBe('https://www.facebook.com/saucelabs');
+        await expect(await socialMediaPage.getCurrentUrl()).toBe('https://www.facebook.com/saucelabs');
 
         await browser.closeWindow();
         await browser.switchToWindow(handles[0]);
@@ -50,11 +47,10 @@ describe('Social Media Links', () => {
         await socialMediaPage.clickLinkedIn();
 
         const handles = await socialMediaPage.getWindowHandles();
-        expect(handles.length).toBeGreaterThan(1);
+        await expect(handles.length).toBeGreaterThan(1);
 
         await browser.switchToWindow(handles[1]);
-        const currentUrl = await socialMediaPage.getCurrentUrl();
-        expect(currentUrl).toBe('https://www.linkedin.com/company/sauce-labs/');
+        await expect(await socialMediaPage.getCurrentUrl()).toBe('https://www.linkedin.com/company/sauce-labs/');
 
         await browser.closeWindow();
         await browser.switchToWindow(handles[0]);
