@@ -47,7 +47,6 @@ describe('SauceDemo tests', () => {
         await checkoutPage.openCart();
         await expect(await checkoutPage.getTitleText()).toBe('Your Cart');
         await expect(await browser.getUrl()).toContain('/cart.html');
-        console.log(await checkoutPage.isCartEmpty());
         await expect(await checkoutPage.isCartEmpty()).toBe(true);
 
         await checkoutPage.checkout();
