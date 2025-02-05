@@ -16,7 +16,7 @@ describe('SauceDemo tests', () => {
     beforeEach(async () => {
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
-        expect(await browser.getUrl()).toContain('/inventory.html');
+        await expect(await browser.getUrl()).toContain('/inventory.html');
     });
 
     it('Menu components (Test Case ID 4)', async () => {
