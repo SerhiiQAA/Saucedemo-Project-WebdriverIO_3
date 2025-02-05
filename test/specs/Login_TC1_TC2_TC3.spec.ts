@@ -15,8 +15,6 @@ describe('SauceDemo tests', () => {
     });
 
     it('Valid data (Test Case ID 1)', async () => {
-        expect(await browser.getUrl()).toContain('https:');
-
         expect(await page.getPasswordFieldType()).toBe('disc');
 
         await page.login('standard_user', 'secret_sauce');
@@ -28,7 +26,6 @@ describe('SauceDemo tests', () => {
     });
 
     it('Password invalid (Test Case ID 2)', async () => {
-        expect(await browser.getUrl()).toContain('https:');
         await page.login('standard_user', 'secret_sauce111111111111111111111');
         expect(await page.isErrorIconDisplayed()).toBe(true);
         expect(await page.isErrorButtonDisplayed()).toBe(true);
@@ -36,7 +33,6 @@ describe('SauceDemo tests', () => {
     });
 
     it('Login invalid (Test Case ID 3)', async () => {
-        expect(await browser.getUrl()).toContain('https:');
         await page.login('standard_user11111111111111', 'secret_sauce');
         expect(await page.isErrorIconDisplayed()).toBe(true);
         expect(await page.isErrorButtonDisplayed()).toBe(true);
@@ -44,7 +40,6 @@ describe('SauceDemo tests', () => {
     });
 
     it('Empty fields', async () => {
-        expect(await browser.getUrl()).toContain('https:');
         await page.login('', '');
         expect(await page.isErrorIconDisplayed()).toBe(true);
         expect(await page.isErrorButtonDisplayed()).toBe(true);

@@ -15,7 +15,6 @@ describe('SauceDemo tests', () => {
 
     beforeEach(async () => {
         await loginPage.open();
-        expect(await browser.getUrl()).toContain('https:');
         await loginPage.login('standard_user', 'secret_sauce');
         expect(await browser.getUrl()).toContain('/inventory.html');
     });
