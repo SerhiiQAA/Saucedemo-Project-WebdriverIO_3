@@ -28,7 +28,7 @@ export class CartPage {
   get inventoryList() { return this.browser.$(this.selectors.inventoryList); }
 
   async addRandomProductToCart(): Promise<void> {
-    const buttons = await this.priceButtons;
+    const buttons = await this.browser.$$(this.selectors.priceButtons);
     const randomIndex = Math.floor(Math.random() * await buttons.length);
     await buttons[randomIndex].click();
   }
