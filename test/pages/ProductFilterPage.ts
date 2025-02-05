@@ -58,4 +58,24 @@ export class ProductFilterPage {
   async isSortContainerDisplayed(): Promise<boolean> {
     return await (await this.browser.$(this.selectors.sortContainer)).isDisplayed();
   }
+
+  async getSortedProductNamesAsc(): Promise<string[]> {
+    const names = await this.collectProductNames();
+    return names.sort();
+  }
+
+  async getSortedProductNamesDesc(): Promise<string[]> {
+    const names = await this.collectProductNames();
+    return names.sort().reverse();
+  }
+
+  async getSortedProductPricesAsc(): Promise<number[]> {
+    const prices = await this.collectProductPrices();
+    return prices.sort((a, b) => a - b);
+  }
+
+  async getSortedProductPricesDesc(): Promise<number[]> {
+    const prices = await this.collectProductPrices();
+    return prices.sort((a, b) => b - a);
+  }
 }
