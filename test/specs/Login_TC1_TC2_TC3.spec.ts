@@ -6,7 +6,6 @@ describe('SauceDemo tests', () => {
 
     before(async () => {
         await setWindowSize(browser);
-        
         page = new LoginPage(browser);
     });
 

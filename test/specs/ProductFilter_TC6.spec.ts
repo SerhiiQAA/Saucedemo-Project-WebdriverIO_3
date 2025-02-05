@@ -8,20 +8,15 @@ describe('Filter and sort products', () => {
 
     before(async () => {
         await setWindowSize(browser);
+    });
 
+    beforeEach(async () => {
         loginPage = new LoginPage(browser);
         productsPage = new ProductFilterPage(browser);
 
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
         await expect(await browser.getUrl()).toContain('/inventory.html');
-    });
-
-    beforeEach(async () => {
-        await loginPage.open();
-        await expect(await browser.getUrl()).toContain('https://www.saucedemo.com');
-        await loginPage.login('standard_user', 'secret_sauce');
-        await expect(await productsPage.isSortContainerDisplayed()).toBe(true);
     });
 
     it('should sort products by price ascending (Test Case ID 6 / 1)', async () => {

@@ -8,7 +8,6 @@ describe('Social Media Links', () => {
 
     before(async () => {
         await setWindowSize(browser);
-
         loginPage = new LoginPage(browser);
         socialMediaPage = new SocialLinksPage(browser);
 
