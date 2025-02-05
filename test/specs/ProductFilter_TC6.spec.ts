@@ -20,7 +20,7 @@ describe('Filter and sort products', () => {
 
         await loginPage.open();
         await loginPage.login('standard_user', 'secret_sauce');
-        expect(await browser.getUrl()).toContain('/inventory.html');
+        await expect(await browser.getUrl()).toContain('/inventory.html');
 
         itemNamesArray = await productsPage.collectProductNames();
         sortedNamesAsc = [...itemNamesArray].sort();
@@ -33,32 +33,28 @@ describe('Filter and sort products', () => {
 
     beforeEach(async () => {
         await loginPage.open();
-        expect(await browser.getUrl()).toContain('https://www.saucedemo.com');
+        await expect(await browser.getUrl()).toContain('https://www.saucedemo.com');
         await loginPage.login('standard_user', 'secret_sauce');
-        expect(await productsPage.isSortContainerDisplayed()).toBe(true);
+        await expect(await productsPage.isSortContainerDisplayed()).toBe(true);
     });
 
     it('should sort products by price ascending (Test Case ID 6 / 1)', async () => {
         await productsPage.sortProductsBy('lohi');
-        const currentPrices = await productsPage.getCurrentProductPrices();
-        expect(currentPrices).toEqual(sortedPricesAsc);
+        await expect(await productsPage.getCurrentProductPrices()).toEqual(sortedPricesAsc);
     });
 
     it('should sort products by price descending (Test Case ID 6 / 2)', async () => {
         await productsPage.sortProductsBy('hilo');
-        const currentPrices = await productsPage.getCurrentProductPrices();
-        expect(currentPrices).toEqual(sortedPricesDesc);
+        await expect(await productsPage.getCurrentProductPrices()).toEqual(sortedPricesDesc);
     });
 
     it('should sort products by name ascending (Test Case ID 6 / 3)', async () => {
         await productsPage.sortProductsBy('az');
-        const currentNames = await productsPage.getCurrentProductNames();
-        expect(currentNames).toEqual(sortedNamesAsc);
+        await expect(await productsPage.getCurrentProductNames()).toEqual(sortedNamesAsc);
     });
 
     it('should sort products by name descending (Test Case ID 6 / 4)', async () => {
         await productsPage.sortProductsBy('za');
-        const currentNames = await productsPage.getCurrentProductNames();
-        expect(currentNames).toEqual(sortedNamesDesc);
+        await expect(await productsPage.getCurrentProductNames()).toEqual(sortedNamesDesc);
     });
 });
