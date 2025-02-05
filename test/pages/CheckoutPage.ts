@@ -61,6 +61,7 @@ export class CheckoutPage {
   }
 
   async isCartEmpty(): Promise<boolean> {
+    await this.browser.pause(500);
     return !(await this.browser.$(this.selectors.cartItem)).isExisting();
   }
 
